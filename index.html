@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Donald Acquaye – Multidisciplinary Artist</title>
-<meta name="description" content="Donald Acquaye is a multidisciplinary artist born in Ghana and based in Manchester, UK. Works, a walk-through 3D gallery, and contact.">
+<meta name="description" content="Donald Acquaye is a multidisciplinary artist based in Manchester, UK. Works, a walk-through 3D gallery, and contact.">
 <link rel="canonical" href="https://acquaye.art/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://acquaye.art/">
 <meta property="og:title" content="Donald Acquaye – Multidisciplinary Artist">
-<meta property="og:description" content="Multidisciplinary artist born in Ghana, based in Manchester. Works and a walk-through 3D gallery.">
+<meta property="og:description" content="Multidisciplinary artist based in Manchester, UK. Works and a walk-through 3D gallery.">
 <meta property="og:image" content="https://acquaye.art/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -79,7 +79,7 @@ body.on-profile .hud,body.on-profile .tag,body.on-profile .foot{visibility:hidde
 .portrait{margin:0;aspect-ratio:2/3;background:#EFEFED}
 .portrait span{font:400 14px "Space Mono",ui-monospace,monospace;color:#888}
 .portrait img{width:100%;height:100%;object-fit:cover;display:block}
-@media (max-width:700px){.pgrid{grid-template-columns:minmax(0,1fr)}.portrait{order:-1;max-width:400px;width:100%;margin:0 auto}}
+@media (max-width:700px){.pgrid{grid-template-columns:minmax(0,1fr) minmax(0,40%);gap:16px}.bio p{font-size:13px;line-height:1.75}.bio .motto{font-size:13.5px}}
 .pfoot{margin-top:56px;padding-top:20px;border-top:1px solid var(--ink-15);display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;font:11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60)}
 .pfoot a{color:var(--ink)}
 
@@ -235,6 +235,14 @@ body.touch .tbtns{display:flex;flex-direction:column;gap:12px;position:absolute;
 .check input{width:18px;height:18px;accent-color:var(--ink)}
 
 /* artwork detail */
+.fcard{position:absolute;left:20px;top:64px;max-width:min(340px,calc(100vw - 40px));padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.94);box-shadow:0 0 0 1px var(--ink-15),0 8px 24px rgba(0,0,0,.08);display:grid;gap:3px;font:12px/1.45 var(--mono);color:#111;pointer-events:auto}
+.fcard .fk{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#777}
+.fcard b{font-size:13.5px}
+.fcard button{justify-self:start;margin-top:6px;font:700 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:underline;text-underline-offset:3px;color:#111;padding:0}
+#furn .sheet{width:min(940px,100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;padding:44px}
+.fimg{aspect-ratio:1;background:#F4F4F2;display:grid;place-items:center;outline:1.5px solid #111}
+.fimg img{width:100%;height:100%;object-fit:contain;display:block}
+.fnote{font:400 13.5px/1.75 var(--mono);color:#222;margin:18px 0 0}
 #detail .sheet{width:min(1040px,100%);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;padding:44px}
 .blank{background-color:#F2F2F0;background-image:linear-gradient(135deg,rgba(58,53,80,.04),rgba(58,53,80,0) 60%)}
 .dimg span{display:block}
@@ -291,7 +299,8 @@ body.touch .tbtns{display:flex;flex-direction:column;gap:12px;position:absolute;
   #build .sheet{width:100%;border-radius:18px 18px 0 0;max-height:54vh;padding:20px 18px 18px}
   .emo span{display:none}
   .h{font-size:28px}
-  #detail .sheet{grid-template-columns:minmax(0,1fr);gap:24px;padding:28px 20px}
+  #detail .sheet,#furn .sheet{grid-template-columns:minmax(0,1fr);gap:24px;padding:28px 20px}
+  .fcard{top:60px;left:12px}
   .dimg{max-width:420px;margin:10px auto 0}
   .facts div{grid-template-columns:100px 1fr}
   #list .sheet{padding:28px 20px}
@@ -320,7 +329,7 @@ body.touch .tbtns{display:flex;flex-direction:column;gap:12px;position:absolute;
     <div class="psub">Multidisciplinary Artist</div>
     <div class="pgrid">
       <div class="bio">
-        <p>Donald Acquaye is a multidisciplinary artist born in Ghana and based in Manchester, UK. He studied architecture, and his work moves across media, materials and surfaces rather than staying within one discipline.</p>
+        <p>Donald Acquaye is a multidisciplinary artist based in Manchester, UK. His work moves across media, materials and surfaces rather than staying within one discipline.</p>
         <p>He doesn't work to a fixed style or technique. Each piece starts open-ended, and the material and the process decide much of where it goes.</p>
         <p class="motto">Everything is a canvas. Anything can become art.</p>
       </div>
@@ -388,6 +397,7 @@ body.touch .tbtns{display:flex;flex-direction:column;gap:12px;position:absolute;
 <div class="hud">
   <div class="tl"><button class="chipbtn" id="editBtn"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z"/></svg><span class="lbl">Edit</span></button></div>
   <div class="tr"><button class="chipbtn" id="soundBtn" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6L8 10H4z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg><span class="lbl" id="soundLbl">Sound: On</span></button></div>
+  <div class="fcard" id="fcard" hidden><span class="fk">Furniture</span><b id="fName"></b><span id="fBy"></span><button id="fMore">Details</button></div>
   <div id="player" hidden>
     <button class="ppill" id="pPill" aria-expanded="false" aria-controls="pPanel"><span aria-hidden="true">♪</span> <b id="pZone"></b> <i id="pChev">Open player</i></button>
     <div class="ppanel" id="pPanel">
@@ -450,6 +460,21 @@ body.touch .tbtns{display:flex;flex-direction:column;gap:12px;position:absolute;
       <dl class="facts" id="dFacts"></dl>
       <div id="dText"></div>
       <div class="row"><button class="btn" id="goThere" hidden>Take me there</button><button class="btn ghost" data-close id="dBack">Back to gallery</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="furn" role="dialog" aria-modal="true" aria-labelledby="fTitle">
+  <div class="sheet">
+    <button class="x" data-close aria-label="Close">×</button>
+    <div><div class="fimg"><img id="fImg" alt=""></div><div class="credit">Simplified study of the original design</div></div>
+    <div>
+      <div class="kicker" id="fKick">Furniture in the gallery</div>
+      <h2 class="h" id="fTitle"></h2>
+      <div class="dartist" id="fDesigner"></div>
+      <dl class="facts" id="fFacts"></dl>
+      <p class="fnote" id="fNote"></p>
+      <div class="row"><button class="btn" id="fSit">Sit here</button><button class="btn ghost" data-close>Back to gallery</button></div>
     </div>
   </div>
 </div>
@@ -587,9 +612,9 @@ function plane(w, h, mat, x, y, z, ry = 0, rx = 0) { const m = new THREE.Mesh(ne
 function box(w, h, d, mat, x, y, z) { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(x, y, z); room.add(m); return m; }
 // concrete slab: mottled, with saw-cut joints every 3 m
 const slabTex = canvasTex(512, 512, g => {
-  g.fillStyle = '#D2D1CD'; g.fillRect(0, 0, 512, 512);
-  for (let i = 0; i < 2600; i++) { const v = rand(-1, 1); g.fillStyle = v > 0 ? `rgba(255,255,255,${rand(.01, .035)})` : `rgba(70,70,70,${rand(.01, .03)})`; g.beginPath(); g.arc(rand(0, 512), rand(0, 512), rand(1, 14), 0, TAU); g.fill(); }
-  g.strokeStyle = 'rgba(60,60,60,.3)'; g.lineWidth = 2; g.strokeRect(1, 1, 510, 510);
+    // clean polished concrete: an even tone and the saw-cut joints, no mottling (it read as paint splatter)
+  g.fillStyle = '#D6D5D1'; g.fillRect(0, 0, 512, 512);
+  g.strokeStyle = 'rgba(60,60,60,.22)'; g.lineWidth = 2; g.strokeRect(1, 1, 510, 510);
 });
 slabTex.wrapS = slabTex.wrapT = THREE.RepeatWrapping; slabTex.repeat.set(HX * 2 / 3, HZ * 2 / 3); slabTex.anisotropy = maxAniso;
 const floor = plane(HX * 2, HZ * 2, new THREE.MeshBasicMaterial({ map: slabTex }), 0, 0, 0, 0, -Math.PI / 2);
@@ -638,6 +663,10 @@ const occluders = [...mobile, kitchen];
 const haloMat = new THREE.MeshBasicMaterial({ map: radial([[0, 'rgba(255,255,255,.9)'], [.35, 'rgba(255,255,255,.75)'], [1, 'rgba(255,255,255,0)']]), transparent: true, depthWrite: false });
 const shadMat = new THREE.MeshBasicMaterial({ map: radial([[0, 'rgba(60,60,60,.22)'], [.25, 'rgba(60,60,60,.22)'], [1, 'rgba(60,60,60,0)']]), transparent: true, depthWrite: false });
 const frameMat = new THREE.MeshBasicMaterial({ color: 0xCDBFA8 });
+// a soft-edged rectangle: tight contact shadows that don't spread into grey blobs
+const softRect = (a, pad = 10) => canvasTex(128, 128, g => { g.filter = `blur(${pad / 2}px)`; g.fillStyle = `rgba(40,40,40,${a})`; g.fillRect(pad, pad, 128 - pad * 2, 128 - pad * 2); });
+const crispShad = new THREE.MeshBasicMaterial({ map: softRect(.22, 6), transparent: true, depthWrite: false });
+const floorShad = new THREE.MeshBasicMaterial({ map: softRect(.16, 14), transparent: true, depthWrite: false });
 const canvasMat = new THREE.MeshBasicMaterial({ color: 0xF5F5F3 });
 function textTex(w, h, draw) { const t = canvasTex(w, h, draw); t.anisotropy = maxAniso; return t; }
 const fontsReady = Promise.all(['700 58px "Space Mono"', 'italic 400 54px "Space Mono"', '400 30px "Space Mono"', '400 40px "Space Mono"', '700 40px "Space Mono"'].map(f => document.fonts.load(f))).catch(() => {}).then(() => document.fonts.ready);
@@ -669,13 +698,11 @@ const ART_SCALE = 2.5; // works are hung at twice their real size so they read f
 function hangArt(i, x, z, ry) {
   const w = WORKS[i], ar = w.px[0] / w.px[1], aw = w.cm[0] / 100 * ART_SCALE, ah = aw / ar;
   const g = onWall(x, z, ry), P = (gw, gh) => new THREE.PlaneGeometry(gw, gh);
-  addTo(g, P(aw * 2 + 1, ah * 1.6 + .8), haloMat, 0, PY + .05, .005, 1);
-  addTo(g, P(aw + .7, ah + .7), shadMat, .05, PY - .06, .01, 2);
   const D = .09; // canvas depth (a 4.5 cm stretcher at the gallery's 2× hang)
   const face = new THREE.MeshBasicMaterial({ map: artTex[i] });
   const cv = new THREE.Mesh(new THREE.BoxGeometry(aw, ah, D), [edgeSide, edgeSide, edgeTop, edgeBottom, face, edgeSide]);
   cv.position.set(0, PY, D / 2 + .004); g.add(cv);
-  addTo(g, P(aw + .14, ah + .14), shadMat, .06, PY - .07, .003, 2);
+  addTo(g, P(aw + .06, ah + .06), crispShad, .03, PY - .035, .003, 2);
   const pm = cv;
   addTo(g, G.label, labelMats[i], aw / 2 + .24 + .46, PY - ah / 2 + .2, .02, 3);
   spotOf(g, 'art', pm, PY, { i });
@@ -751,19 +778,248 @@ entryDoor(15, -HZ + .01, 0);
 serviceDoor(-2, HZ - .01, Math.PI, 'works');
 slidingDoor(-HX + .01, -2, Math.PI / 2, 'contact');
 addBoard(KIT.x1 + .005, (KIT.z0 + KIT.z1) / 2, Math.PI / 2);
-// gallery benches: oak seat on steel slab legs, about 3 m in front of each work
-const oak = new THREE.MeshBasicMaterial({ map: canvasTex(128, 32, g => { g.fillStyle = '#B98A5A'; g.fillRect(0, 0, 128, 32); g.globalAlpha = .18; g.strokeStyle = '#6B4626'; for (let y = 3; y < 32; y += 4) { g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(40, y + rand(-2, 2), 90, y + rand(-2, 2), 128, y); g.stroke(); } }) });
-const oakEdge = new THREE.MeshBasicMaterial({ color: 0x9A6E43 });
+// ---- furniture: benches and chairs by architects, modelled as simplified studies of the real pieces ----
+// Each design faces local +z (the sitter's knees point +z); local x is its length. seatY is the seat-top height.
+const FL = c => new THREE.MeshLambertMaterial({ color: c });
+const FLs = c => new THREE.MeshLambertMaterial({ color: c, side: THREE.DoubleSide });
+const FLt = (map, c = 0xffffff) => new THREE.MeshLambertMaterial({ map, color: c });
+const FM = {
+  chrome: new THREE.MeshLambertMaterial({ color: 0xD3D7DC, emissive: 0x2A2D31 }),
+  alu: FL(0xBFC3C7), black: FL(0x161616), ebony: FL(0x1E1C1A), birch: FL(0xE3C9A0), teak: FL(0x8B5A33),
+  white: FLs(0xF3F2EE), red: FL(0xC21F2E), blue: FL(0x1F3F98), yellow: FL(0xF1C21B), cushion: FL(0xB8352F),
+};
+// tufted leather: a grid of sewn panels with a button at each crossing
+const tuftTex = (cols, rows, base, seam) => canvasTex(256, 256, g => {
+  g.fillStyle = base; g.fillRect(0, 0, 256, 256);
+  const cw = 256 / cols, ch = 256 / rows;
+  for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+    const gr = g.createRadialGradient(i * cw + cw / 2, j * ch + ch / 2, 1, i * cw + cw / 2, j * ch + ch / 2, Math.max(cw, ch) * .7);
+    gr.addColorStop(0, 'rgba(255,255,255,.10)'); gr.addColorStop(1, 'rgba(0,0,0,.18)'); g.fillStyle = gr; g.fillRect(i * cw, j * ch, cw, ch);
+  }
+  g.strokeStyle = seam; g.lineWidth = 2;
+  for (let i = 0; i <= cols; i++) { g.beginPath(); g.moveTo(i * cw, 0); g.lineTo(i * cw, 256); g.stroke(); }
+  for (let j = 0; j <= rows; j++) { g.beginPath(); g.moveTo(0, j * ch); g.lineTo(256, j * ch); g.stroke(); }
+});
+const caneTex = canvasTex(128, 128, g => {   // Vienna cane: octagonal open weave
+  g.fillStyle = '#5B4127'; g.fillRect(0, 0, 128, 128);
+  g.strokeStyle = '#D8BC85'; g.lineWidth = 3;
+  for (let k = -128; k < 256; k += 16) {
+    g.beginPath(); g.moveTo(k, 0); g.lineTo(k + 128, 128); g.stroke();
+    g.beginPath(); g.moveTo(k + 128, 0); g.lineTo(k, 128); g.stroke();
+  }
+  for (let k = 0; k < 128; k += 16) { g.beginPath(); g.moveTo(k + 8, 0); g.lineTo(k + 8, 128); g.stroke(); g.beginPath(); g.moveTo(0, k + 8); g.lineTo(128, k + 8); g.stroke(); }
+});
+caneTex.wrapS = caneTex.wrapT = THREE.RepeatWrapping; caneTex.repeat.set(9, 3);
+const FB = (g, w, h, d, mat, x, y, z, rx = 0, ry = 0, rz = 0) => { const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(x, y, z); m.rotation.set(rx, ry, rz); g.add(m); return m; };
+const FC = (g, r, h, mat, x, y, z, r2 = r) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r2, h, 14), mat); m.position.set(x, y, z); g.add(m); return m; };
+const fv3 = a => new THREE.Vector3(a[0], a[1], a[2]);
+const FT = (g, pts, r, mat, closed = false) => { const m = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map(fv3), closed, 'centripetal'), pts.length * 10, r, 8, closed), mat); g.add(m); return m; };
+const FTL = (g, pts, r, mat) => { for (let i = 0; i < pts.length - 1; i++) { const a = fv3(pts[i]), b = fv3(pts[i + 1]), m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, a.distanceTo(b) + r * 2, 10), mat); m.position.copy(a).add(b).multiplyScalar(.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize()); g.add(m); } };
+// a ribbon swept along a side profile [z, y], extruded across the seat width: bent plywood
+function ribbon(g, prof, width, mat, thick = .012) {
+  const curve = new THREE.CatmullRomCurve3(prof.map(([z, y]) => new THREE.Vector3(0, y, z)), false, 'centripetal'), N = 60, pts = curve.getPoints(N);
+  const pos = [], idx = [];
+  for (let s = 0; s < 2; s++) for (let i = 0; i <= N; i++) for (const x of [-width / 2, width / 2]) { const p = pts[i], q = pts[Math.min(N, i + 1)], r = pts[Math.max(0, i - 1)], tz = q.z - r.z, ty = q.y - r.y, L = Math.hypot(tz, ty) || 1; pos.push(x, p.y + (s ? thick : 0) * tz / L, p.z - (s ? thick : 0) * ty / L); }
+  const row = N + 1;
+  for (let s = 0; s < 2; s++) for (let i = 0; i < N; i++) { const a = s * row * 2 + i * 2; idx.push(a, a + 2, a + 1, a + 1, a + 2, a + 3); }
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setIndex(idx); geo.computeVertexNormals();
+  const m = new THREE.Mesh(geo, mat); g.add(m); return m;
+}
+// the Paimio side frame: a closed bent-birch loop in the side plane
+function loopFrame(g, x, mat) {
+  const sh = new THREE.Shape(), r = .13, z0 = -.37, z1 = .36, y0 = 0, y1 = .56;
+  const rr = (s, t) => s; // keep shape readable
+  sh.moveTo(z0 + r, y0); sh.lineTo(z1 - r, y0); sh.quadraticCurveTo(z1, y0, z1, y0 + r); sh.lineTo(z1, y1 - r); sh.quadraticCurveTo(z1, y1, z1 - r, y1);
+  sh.lineTo(z0 + r, y1); sh.quadraticCurveTo(z0, y1, z0, y1 - r); sh.lineTo(z0, y0 + r); sh.quadraticCurveTo(z0, y0, z0 + r, y0);
+  const t = .045, hole = new THREE.Path(), a = z0 + t, b = z1 - t, c = y0 + t, d = y1 - t, rh = r - t;
+  hole.moveTo(a + rh, c); hole.lineTo(b - rh, c); hole.quadraticCurveTo(b, c, b, c + rh); hole.lineTo(b, d - rh); hole.quadraticCurveTo(b, d, b - rh, d);
+  hole.lineTo(a + rh, d); hole.quadraticCurveTo(a, d, a, d - rh); hole.lineTo(a, c + rh); hole.quadraticCurveTo(a, c, a + rh, c);
+  sh.holes.push(hole);
+  const geo = new THREE.ExtrudeGeometry(sh, { depth: .045, bevelEnabled: false, curveSegments: 10 });
+  const m = new THREE.Mesh(geo, mat); m.rotation.y = -Math.PI / 2; m.position.x = x + .0225; g.add(m); return m;   // shape u -> world z
+}
+const stick = (g, w, h, d, x, y, z) => {   // Rietveld lath: black with yellow cut ends
+  FB(g, w, h, d, FM.black, x, y, z);
+  const caps = w > h && w > d ? [[w / 2, 0, 0], [-w / 2, 0, 0]] : h > d ? [[0, h / 2, 0], [0, -h / 2, 0]] : [[0, 0, d / 2], [0, 0, -d / 2]];
+  caps.forEach(([cx, cy, cz]) => FB(g, cx ? .004 : w + .002, cy ? .004 : h + .002, cz ? .004 : d + .002, FM.yellow, x + cx, y + cy, z + cz));
+};
+const DESIGNS = {
+  daybed: {
+    name: 'Barcelona Day Bed', by: 'Ludwig Mies van der Rohe & Lilly Reich', year: '1930', maker: 'Knoll',
+    mat: 'Hand-tufted leather cushion on a hardwood frame, tubular steel legs',
+    note: 'Part of the Barcelona collection, alongside the chair and stool. Knoll describes 72 individual leather panels, each cut, hand-welted and hand-tufted.',
+    w: 1.98, d: .99, seatY: .47,
+    build(g) {
+      FB(g, 1.96, .06, .97, FM.ebony, 0, .30, 0);
+      [-.9, 0, .9].forEach(x => [-.42, .42].forEach(z => FC(g, .02, .29, FM.chrome, x, .145, z)));
+      FB(g, 1.98, .14, .99, [FL(0x111111), FL(0x111111), FLt(tuftTex(12, 6, '#1d1b19', 'rgba(0,0,0,.65)')), FL(0x111111), FL(0x111111), FL(0x111111)], 0, .40, 0);
+    },
+  },
+  knoll: {
+    name: 'Florence Knoll Bench', by: 'Florence Knoll', year: '1954', maker: 'Knoll',
+    mat: 'Chrome-plated steel frame, seat of individually sewn leather squares',
+    note: 'She called it a “fill-in piece”. Its spare, geometric profile shows the rational approach she learned from her mentor, Mies van der Rohe.',
+    w: 1.54, d: .50, seatY: .42,
+    build(g) {
+      const s = .028, y = .35;
+      [-.75, .75].forEach(x => [-.23, .23].forEach(z => FB(g, s, y, s, FM.chrome, x, y / 2, z)));
+      [-.23, .23].forEach(z => FB(g, 1.53, s, s, FM.chrome, 0, y, z)); [-.75, .75].forEach(x => FB(g, s, s, .46 + s, FM.chrome, x, y, 0));
+      FB(g, 1.50, .07, .48, [FL(0x141414), FL(0x141414), FLt(tuftTex(6, 2, '#191817', 'rgba(0,0,0,.7)')), FL(0x141414), FL(0x141414), FL(0x141414)], 0, .385, 0);
+    },
+  },
+  nelson: {
+    name: 'Nelson Platform Bench', by: 'George Nelson', year: '1946', maker: 'Herman Miller',
+    mat: 'Solid maple slats on finger-jointed ebonised legs',
+    note: 'First made for Nelson’s own office. It works as a bench, a low table or a base for cabinets.',
+    w: 1.52, d: .46, seatY: .35,
+    build(g) {
+      const maple = FL(0xE6CB9A);
+      for (let x = -.74; x <= .741; x += .038) FB(g, .03, .04, .46, maple, x, .33, 0);
+      [-.2, .2].forEach(z => FB(g, 1.52, .035, .03, maple, 0, .295, z));
+      [-.6, .6].forEach(x => { [-.19, .19].forEach(z => FB(g, .04, .28, .04, FM.ebony, x, .14, z)); FB(g, .04, .04, .42, FM.ebony, x, .26, 0); });
+    },
+  },
+  aalto: {
+    name: 'Aalto Bench 153', by: 'Alvar Aalto', year: '1945', maker: 'Artek',
+    mat: 'Solid Finnish birch, slatted top on L-legs',
+    note: 'Aalto’s L-leg is screwed straight to the underside of the seat, with no connecting parts. The bench is a late member of his L-leg family.',
+    w: 1.12, d: .40, seatY: .44,
+    build(g) {
+      for (let z = -.17; z <= .171; z += .0485) FB(g, 1.12, .035, .04, FM.birch, 0, .42, z);
+      [-.48, .48].forEach(x => [-.16, .16].forEach(z => {
+        FB(g, .045, .40, .045, FM.birch, x, .20, z);
+        FB(g, .12, .045, .045, FM.birch, x - Math.sign(x) * .05, .38, z);
+      }));
+    },
+  },
+  civil: {
+    name: 'Civil Bench (057)', by: 'Pierre Jeanneret', year: 'c. 1955 · reissued 2020', maker: 'Cassina',
+    mat: 'Solid teak frame, woven Vienna cane seat',
+    note: 'Designed for the government buildings of Chandigarh, India, where Jeanneret worked as resident architect alongside Le Corbusier. Cassina reissued it in its Hommage à Pierre Jeanneret collection.',
+    w: 1.33, d: .45, seatY: .42,
+    build(g) {
+      [-.63, .63].forEach(x => [-.2, .2].forEach(z => FB(g, .045, .42, .045, FM.teak, x, .21, z)));
+      [-.2, .2].forEach(z => FB(g, 1.31, .06, .04, FM.teak, 0, .39, z)); [-.63, .63].forEach(x => FB(g, .04, .06, .44, FM.teak, x, .39, 0));
+      [-.2, .2].forEach(z => FB(g, 1.26, .03, .03, FM.teak, 0, .10, z));
+      FB(g, 1.22, .012, .36, FLt(caneTex), 0, .405, 0);
+    },
+  },
+  benchB: {
+    name: 'Bench B', by: 'Konstantin Grcic', year: '2012', maker: 'BD Barcelona Design',
+    mat: 'Extruded anodised aluminium slats on cast aluminium legs',
+    note: 'Its crossing legs nod to Mies van der Rohe’s 1929 Barcelona Chair. It is a kit of parts that runs from a one-seater up to a six-metre bench.',
+    w: 1.8, d: .55, seatY: .41,
+    build(g) {
+      for (let z = -.24; z <= .241; z += .08) FB(g, 1.8, .03, .065, FM.alu, 0, .40, z);
+      [-.72, .72].forEach(x => { FB(g, .05, .55, .05, FM.alu, x, .20, 0, .72); FB(g, .05, .55, .05, FM.alu, x, .20, 0, -.72); FB(g, .05, .04, .52, FM.alu, x, .37, 0); });
+    },
+  },
+  barcelona: {
+    name: 'Barcelona Chair', by: 'Ludwig Mies van der Rohe & Lilly Reich', year: '1929', maker: 'Knoll',
+    mat: 'Chrome-plated steel X-frame, tufted leather cushions on leather straps',
+    note: 'Made for the German Pavilion at the 1929 Barcelona International Exposition. The originals were handmade in luxurious materials, including ivory pigskin.',
+    w: .76, d: .78, seatY: .44, exhibit: true,
+    build(g) {
+      [-.34, .34].forEach(x => {
+        FT(g, [[x, .01, .36], [x, .16, .2], [x, .34, 0], [x, .55, -.2], [x, .80, -.34]], .014, FM.chrome);
+        FT(g, [[x, .01, -.36], [x, .17, -.2], [x, .33, 0], [x, .39, .2], [x, .40, .35]], .014, FM.chrome);
+      });
+      FTL(g, [[-.34, .40, .34], [.34, .40, .34]], .012, FM.chrome); FTL(g, [[-.34, .55, -.2], [.34, .55, -.2]], .012, FM.chrome);
+      const lt = FLt(tuftTex(5, 4, '#1b1a18', 'rgba(0,0,0,.7)')), sd = FL(0x111111);
+      FB(g, .66, .10, .60, [sd, sd, lt, sd, sd, sd], 0, .45, .03, -.06);
+      FB(g, .66, .62, .09, [sd, sd, sd, sd, lt, sd], 0, .67, -.24, -.30);
+    },
+  },
+  wassily: {
+    name: 'Wassily Chair (Model B3)', by: 'Marcel Breuer', year: '1925', maker: 'Knoll',
+    mat: 'Bent tubular steel frame, leather straps',
+    note: 'Designed at the Bauhaus in Dessau. Breuer took the idea of bent steel tube from bicycle handlebars, which made the frame light enough to be almost all air.',
+    w: .78, d: .69, seatY: .43, exhibit: true,
+    build(g) {
+      const r = .011, sling = FLs(0x121212);
+      [-.37, .37].forEach(x => {
+        FTL(g, [[x, .012, -.30], [x, .012, .30], [x, .58, .30], [x, .58, -.22]], r, FM.chrome);
+        FTL(g, [[x, .24, -.30], [x, .78, -.34]], r, FM.chrome);
+        FTL(g, [[x * .9, .40, .26], [x * .9, .33, -.24]], r, FM.chrome);
+        FB(g, .006, .09, .46, sling, x, .50, .03);
+      });
+      FTL(g, [[-.37, .78, -.34], [.37, .78, -.34]], r, FM.chrome); FTL(g, [[-.33, .40, .26], [.33, .40, .26]], r, FM.chrome); FTL(g, [[-.37, .24, -.30], [.37, .24, -.30]], r, FM.chrome);
+      FB(g, .64, .006, .52, sling, 0, .375, .01, -.14);
+      FB(g, .70, .30, .006, sling, 0, .62, -.32, -.08);
+    },
+  },
+  redblue: {
+    name: 'Red and Blue Chair', by: 'Gerrit Rietveld', year: '1918 (colours c. 1923)', maker: 'Cassina',
+    mat: 'Painted wooden laths and boards',
+    note: 'A De Stijl idea built as furniture: standard laths meet without hiding the joints, and the seat and back float as planes of primary colour.',
+    w: .66, d: .83, seatY: .34, exhibit: true,
+    build(g) {
+      const s = .03;
+      [-.3, .3].forEach(x => { stick(g, s, .56, s, x, .28, .28); stick(g, s, .36, s, x, .18, -.3); stick(g, s, s, .84, x, .16, 0); FB(g, .08, .02, .62, FM.black, x, .575, .1); [.41, -.21].forEach(z => FB(g, .081, .021, .004, FM.yellow, x, .575, z)); });
+      [[.16, .28], [.16, -.3], [.36, -.3], [.36, .28]].forEach(([y, z]) => stick(g, .78, s, s, 0, y, z));
+      FB(g, .54, .02, .46, FM.blue, 0, .345, .06, -.12);
+      FB(g, .54, .80, .02, FM.red, 0, .63, -.45, -.48);
+    },
+  },
+  paimio: {
+    name: 'Paimio Chair (41)', by: 'Alvar Aalto', year: '1932', maker: 'Artek',
+    mat: 'Bent birch plywood seat in a laminated birch frame',
+    note: 'Designed for the Paimio tuberculosis sanatorium. The angle of the back was set to help patients breathe more easily.',
+    w: .60, d: .80, seatY: .33, exhibit: true,
+    build(g) {
+      loopFrame(g, -.29, FM.birch); loopFrame(g, .29, FM.birch);
+      ribbon(g, [[-.27, .74], [-.33, .70], [-.30, .64], [-.20, .46], [-.10, .31], [.10, .30], [.24, .34], [.32, .32], [.31, .26], [.26, .25]], .53, FM.white);
+      FC(g, .016, .58, FM.birch, 0, .30, -.10).rotation.z = Math.PI / 2; FC(g, .016, .58, FM.birch, 0, .32, .22).rotation.z = Math.PI / 2;
+    },
+  },
+  tulip: {
+    name: 'Tulip Armless Chair', by: 'Eero Saarinen', year: '1956', maker: 'Knoll',
+    mat: 'Moulded shell on a single cast pedestal, upholstered cushion',
+    note: 'Saarinen wanted to clear away the “slum of legs” under tables and chairs. One pedestal replaces four legs, so the chair reads as a single form.',
+    w: .50, d: .54, seatY: .48, exhibit: true,
+    build(g) {
+      const lathe = (pts, mat, ps = 0, pl = TAU) => { const m = new THREE.Mesh(new THREE.LatheGeometry(pts.map(([r, y]) => new THREE.Vector2(r, y)), 40, ps, pl), mat); g.add(m); return m; };
+      lathe([[0, .005], [.25, .005], [.265, .015], [.22, .035], [.09, .07], [.045, .15], [.038, .30], [.055, .38], [.10, .41], [0, .41]], FM.white);
+      lathe([[0, .40], [.14, .40], [.21, .43], [.245, .48], [.25, .50]], FM.white);
+      lathe([[.25, .50], [.255, .58], [.235, .70], [.19, .80]], FM.white, Math.PI - 1.75, 3.5);   // the back wraps round about 200°, open at the front
+      FC(g, .205, .045, FM.cushion, 0, .465, .01);
+    },
+  },
+};
+const FURN = [];   // every placed piece: { d, g, x, z, h, seatY, art }
+function placeFurniture(key, x, z, ry, art = null) {
+  const d = DESIGNS[key], g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = ry; scene.add(g);
+  d.build(g);
+  if (d.exhibit) {   // a thin white plinth marks a piece on show
+    const pl = new THREE.Mesh(new THREE.BoxGeometry(1.25, .03, 1.25), FL(0xF4F4F1)); pl.position.y = .015; g.add(pl);
+    g.children.forEach(m => { if (m !== pl) m.position.y += .03; });
+    const lab = new THREE.MeshBasicMaterial({ map: textTex(640, 160, g2 => { g2.fillStyle = '#1a1a1a'; fitFont(g2, d.name, '700 {z}px "Space Mono", monospace', 46, 620); g2.fillText(d.name, 10, 62); g2.fillStyle = '#555'; const l2 = `${d.by}, ${d.year}`; fitFont(g2, l2, '400 {z}px "Space Mono", monospace', 30, 620); g2.fillText(l2, 10, 118); }), transparent: true, depthWrite: false });
+    const lm = new THREE.Mesh(new THREE.PlaneGeometry(1.0, .25), lab); lm.rotation.x = -Math.PI / 2; lm.position.set(0, .032, .5); g.add(lm);
+    d.labelMat = lab;
+  }
+  const sh = new THREE.Mesh(new THREE.PlaneGeometry(d.w + .25, d.d + .25), floorShad); sh.rotation.x = -Math.PI / 2; sh.position.y = d.exhibit ? .033 : .006; g.add(sh);
+  const f = { d, key, g, x, z, h: ry, seatY: d.seatY + (d.exhibit ? .03 : 0), art };
+  g.traverse(m => { if (m.isMesh && m !== sh && !(m.material && m.material.transparent)) { m.userData.furn = f; furnPicks.push(m); } });
+  // collision: the piece itself, rotated into world axes; plinths can be walked onto
+  const c = Math.abs(Math.cos(ry)) > .5, hw = (c ? d.w : d.d) / 2, hd = (c ? d.d : d.w) / 2;
+  OBST.push({ x0: x - hw, x1: x + hw, z0: z - hd, z1: z + hd });
+  FURN.push(f); BENCHES.push(f); return f;
+}
+const furnPicks = [];
+// a bench in front of every work, one design each (Florence Knoll's appears twice)
+const BENCH_FOR = { fear: 'daybed', loneliness: 'aalto', 'pink-panthers': 'benchB', 'why-always-me': 'nelson', basquiat: 'knoll', 'peter-lorre': 'civil', marilyn: 'knoll' };
 const BENCHES = [];
 spots.filter(sp => sp.type === 'art').forEach(sp => {
-  const bx = sp.pos.x + sp.nrm.x * 3.3, bz = sp.pos.z + sp.nrm.z * 3.3, along = Math.abs(sp.nrm.z) > .5; // bench runs parallel to the wall
-  const g = new THREE.Group(); g.position.set(bx, 0, bz); g.rotation.y = along ? 0 : Math.PI / 2; scene.add(g);
-  const seat = new THREE.Mesh(new THREE.BoxGeometry(2.0, .07, .48), [oakEdge, oakEdge, oak, oakEdge, oakEdge, oakEdge]); seat.position.y = .44; g.add(seat);
-  [-.82, .82].forEach(x => { const l = new THREE.Mesh(new THREE.BoxGeometry(.05, .41, .44), steel); l.position.set(x, .205, 0); g.add(l); });
-  const sh = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 1.1), shadMat); sh.rotation.x = -Math.PI / 2; sh.position.y = .008; g.add(sh);
-  BENCHES.push({ x: bx, z: bz, art: sp, h: Math.atan2(-sp.nrm.x, -sp.nrm.z) });
-  OBST.push(along ? { x0: bx - 1, x1: bx + 1, z0: bz - .24, z1: bz + .24 } : { x0: bx - .24, x1: bx + .24, z0: bz - 1, z1: bz + 1 });
+  const bx = sp.pos.x + sp.nrm.x * 3.3, bz = sp.pos.z + sp.nrm.z * 3.3, along = Math.abs(sp.nrm.z) > .5;
+  placeFurniture(BENCH_FOR[WORKS[sp.i].id] || 'knoll', bx, bz, along ? 0 : Math.PI / 2, sp);
+  const f = FURN[FURN.length - 1]; f.h = Math.atan2(-sp.nrm.x, -sp.nrm.z);   // sit facing the work
 });
+// five chairs by architects, on plinths in the open floor (each has 3 m or more of clear space around it)
+[['barcelona', 6, -8.5], ['redblue', 1, 3], ['paimio', -8, 8], ['wassily', 17, 9], ['tulip', -17, 1.5]].forEach(([k, x, z]) => {
+  const ry = Math.atan2(-x, -z);   // turn to face the middle of the hall
+  placeFurniture(k, x, z, ry);
+});
+
 const glow = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 3.0), new THREE.MeshBasicMaterial({ map: radial([[0, 'rgba(255,255,250,.9)'], [.45, 'rgba(255,255,250,.5)'], [1, 'rgba(255,255,250,0)']]), transparent: true, depthWrite: false, opacity: 0 }));
 glow.renderOrder = 0; scene.add(glow);
 
@@ -948,8 +1204,8 @@ function fallDrop(pos) {
 function updateDrops(dt) {
   for (const d of drops) {
     if (!d.alive) continue;
-    if (!d.landed) { d.vy -= 9.8 * dt; d.m.position.y += d.vy * dt; if (d.m.position.y <= .015) { d.landed = true; d.m.visible = false; d.sp.visible = true; d.sp.position.set(d.m.position.x, .013, d.m.position.z); d.t = 0; } }
-    else { d.t += dt; const k = d.t / 2.5; d.sp.scale.setScalar(.5 + k); d.sp.material.opacity = 1 - k; if (k >= 1) { d.alive = false; d.sp.visible = false; } }
+    if (!d.landed) { d.vy -= 9.8 * dt; d.m.position.y += d.vy * dt; if (d.m.position.y <= .015) { d.landed = true; d.m.visible = false; d.sp.visible = false; d.sp.position.set(d.m.position.x, .013, d.m.position.z); d.t = 0; } }
+    else { d.alive = false; d.sp.visible = false; }
   }
 }
 const printTex = canvasTex(64, 128, g => { g.fillStyle = 'rgba(58,53,80,.5)'; g.beginPath(); g.ellipse(32, 78, 18, 34, 0, 0, TAU); g.fill(); g.beginPath(); g.ellipse(32, 24, 14, 14, 0, 0, TAU); g.fill(); });
@@ -990,13 +1246,14 @@ function setSound(on) {
   soundOn = on; store.set('sound', on ? '1' : '0');
   $('#soundLbl').textContent = 'Sound: ' + (on ? 'On' : 'Off'); $('#soundBtn').setAttribute('aria-pressed', on);
   if (master) master.gain.setTargetAtTime(on ? .9 : 0, actx.currentTime, .1);
-  if (!on) musicPause();
+  if (!on) { music.auto = false; musicPause(); }
+  else { music.auto = true; if (music.ctl) musicPlay(); else if (music.zone && music.svc === 'spotify') buildEmbed(); }
   if (typeof playerVisible === 'function' && $('#player')) playerVisible();
 }
 $('#soundBtn').onclick = () => { audioInit(); setSound(!soundOn); };
 
 /* ---- music: each part of the hall streams a different artist through Spotify's official player ---- */
-// Spotify does the streaming and licensing. Visitors press play once; walking into another zone swaps the artist.
+// Spotify does the streaming and licensing. It starts by itself after the Enter click; walking into another zone swaps the artist.
 // Signed-in Spotify users hear full tracks in the browser; everyone else gets Spotify's previews.
 // Music zones: the hall (x -20..20, z -12..12) is split into a 5 x 3 grid of 8 m squares, one artist each.
 // spotify / apple: [type, id]. null means that service has no embeddable page for it, so the player shows a link instead.
@@ -1028,7 +1285,10 @@ const ZONES = [
 ZONES.forEach((z, i) => { const c = i % 4, r = Math.floor(i / 4); z.x0 = ZCOLS[c]; z.x1 = ZCOLS[c + 1]; z.z0 = ZROWS[r]; z.z1 = ZROWS[r + 1]; });
 const inZone = (z, x, y, m = 0) => x >= z.x0 + m && x <= z.x1 - m && y >= z.z0 + m && y <= z.z1 - m;
 const zoneAt = (x, y) => ZONES.find(z => inZone(z, x, y)) || ZONES[3];
-const music = { zone: null, svc: store.get('svc', 'spotify') === 'apple' ? 'apple' : 'spotify', ctl: null, api: null, paused: true, wanted: false };
+// Autoplay: the gallery starts Spotify itself once the visitor clicks "Enter the gallery" (browsers only allow sound after a click).
+// music.auto = the visitor wants music; pausing in the player or turning sound off clears it, and it carries across zones.
+const music = { zone: null, svc: store.get('svc', 'spotify') === 'apple' ? 'apple' : 'spotify', ctl: null, api: null, paused: true, wanted: false, auto: soundOn, loadT: 0 };
+function musicPlay() { if (!music.ctl || !soundOn || !music.auto) return; music.loadT = performance.now(); try { music.ctl.play(); } catch {} }
 function musicStart() {}
 function musicLevel() {}
 function playerVisible() { const p = $('#player'); if (p) p.hidden = !(soundOn && mode === 'play' && !document.body.classList.contains('on-profile')); }
@@ -1049,7 +1309,7 @@ function linkOut(svc, z) {
   d.innerHTML = `<span>No ${svc === 'apple' ? 'Apple Music' : 'Spotify'} player for ${z.artist} here yet.</span><a href="${url}" target="_blank" rel="noopener">Open in ${svc === 'apple' ? 'Apple Music' : 'Spotify'} ↗</a>`;
   return d;
 }
-const musicInUse = () => $('#player').classList.contains('open') || music.wanted || music.touched || !!music.ctl;
+const musicInUse = () => $('#player').classList.contains('open') || music.wanted || music.touched || !!music.ctl || (music.svc === 'spotify' && music.auto && soundOn);
 function buildEmbed() {
   music.dirty = false;
   const box = $('#pEmbed'), z = music.zone; music.ctl = null; music.paused = true; music.touched = false;
@@ -1064,7 +1324,13 @@ function buildEmbed() {
     const el = document.createElement('div'); box.replaceChildren(el);
     music.api.createController(el, { uri: `spotify:${src[0]}:${src[1]}`, width: '100%', height: 80 }, ctl => {
       music.ctl = ctl;
-      ctl.addListener('playback_update', e => { music.paused = e.data.isPaused; if (!e.data.isPaused) music.wanted = true; });
+      ctl.addListener('ready', () => { if (mode === 'play') musicPlay(); });
+      ctl.addListener('playback_update', e => {
+        const was = music.paused; music.paused = e.data.isPaused;
+        if (!e.data.isPaused) { music.wanted = true; music.auto = true; }
+        else if (!was && performance.now() - music.loadT > 2500 && soundOn) music.auto = false;   // the visitor paused it: stop autoplaying
+      });
+      if (mode === 'play') musicPlay();
     });
   } else box.replaceChildren(iframe(`https://open.spotify.com/embed/${src[0]}/${src[1]}?utm_source=generator`, 80));
 }
@@ -1072,8 +1338,8 @@ function switchZone(z) {
   music.zone = z; setZoneLabel(z);
   if (!musicInUse()) { music.dirty = true; return; }   // build it when the player is opened
   if (music.svc === 'spotify' && music.ctl && z.spotify) {
-    const resume = music.wanted && !music.paused && soundOn;
-    music.ctl.loadUri(`spotify:${z.spotify[0]}:${z.spotify[1]}`); if (resume) setTimeout(() => music.ctl && music.ctl.play(), 900);
+    music.loadT = performance.now();
+    music.ctl.loadUri(`spotify:${z.spotify[0]}:${z.spotify[1]}`); setTimeout(musicPlay, 900);
   } else buildEmbed();
 }
 function musicPause() {
@@ -1090,7 +1356,7 @@ document.querySelectorAll('.psvc button').forEach(b => b.addEventListener('click
 document.querySelectorAll('.psvc button').forEach(x => x.setAttribute('aria-pressed', x.dataset.svc === music.svc));
 function zoneCheck() {
   // switch only once the character is 0.8 m inside a new square, so walking along a boundary doesn't flick the music
-  if (!music.zone) { const z = zoneAt(ST.x, ST.z); music.zone = z; setZoneLabel(z); music.dirty = true; }
+  if (!music.zone) { const z = zoneAt(ST.x, ST.z); music.zone = z; setZoneLabel(z); if (musicInUse()) buildEmbed(); else music.dirty = true; }
   else if (!inZone(music.zone, ST.x, ST.z, -0.8)) { const z = zoneAt(ST.x, ST.z); if (z !== music.zone && inZone(z, ST.x, ST.z, .8)) switchZone(z); }
   playerVisible();
 }
@@ -1133,11 +1399,12 @@ function pickAt(e) {
   const r = world.getBoundingClientRect();
   ndc.set((e.clientX - r.left) / r.width * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
   ray.setFromCamera(ndc, camera);
-  const h = ray.intersectObjects([...occluders, ...picks], false)[0];
-  return h && h.object.userData.spot && h.distance < 22 ? h.object.userData.spot : null;
+  const h = ray.intersectObjects([...occluders, ...picks, ...furnPicks], false)[0];
+  if (!h || h.distance > 22) return null;
+  return h.object.userData.spot || (h.object.userData.furn ? { furn: h.object.userData.furn } : null);
 }
 function hoverPick(e) { if (mode !== 'play' || openModal || e.pointerType === 'touch') return; world.style.cursor = pickAt(e) ? 'pointer' : ''; }
-function clickPick(e) { const s = pickAt(e); if (s) useSpot(s); }
+function clickPick(e) { const s = pickAt(e); if (s && s.furn) openFurn(s.furn); else if (s) useSpot(s); }
 
 // touch joystick
 const joyEl = $('#joy'), knob = $('#knob');
@@ -1152,7 +1419,8 @@ function joyMove(e) {
 }
 
 /* ================= interactions ================= */
-function act() { if (mode !== 'play' || openModal) return; if (brain.sit) { standUp(); return; } if (near) { useSpot(near); return; } const b = nearestBench(); if (b) sitDown(b); }
+function act() { if (mode !== 'play' || openModal) return; if (brain.sit) { standUp(); return; } const b = nearestBench(); if (b && (!near || nearSeat(b))) { sitDown(b); return; } if (near) { useSpot(near); return; } }
+const nearSeat = b => Math.hypot(b.x - ST.x, b.z - ST.z) < 1.2;
 function useSpot(s) {
   chime(784, .35, .05);
   if (s.type === 'art') openDetail(s.i, false);
@@ -1323,6 +1591,7 @@ $('#enterBtn').onclick = () => {
   const first = mode !== 'play' && !played;
   setName(nameIn.value); audioInit(); closeModal(); mode = 'play'; played = true; document.body.classList.remove('building');
   camera.clearViewOffset(); camSnap = true; ST.idle = 0; musicLevel(true);
+  if (soundOn) { music.auto = true; if (music.ctl) musicPlay(); else zoneCheck(); }
   $('#enterBtn').textContent = 'Done';
   chime(523, .4, .05); setTimeout(() => chime(784, .5, .05), 120);
   if (first && store.get('tutDone', '0') !== '1') openTut(0); else think(`Hi, I'm ${charName}.`, 3);
@@ -1331,8 +1600,8 @@ let played = false;
 $('#editBtn').onclick = () => { mode = 'build'; document.body.classList.add('building'); goStep(2); showModal('build'); };
 const TUT = [
   ['Walk around', TOUCH ? 'Use the stick<br>bottom left' : '<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrows<br><kbd>Space</kbd> jump', TOUCH ? 'Push the stick to walk and steer. Drag anywhere else to turn the camera.' : 'Walk with WASD or the arrow keys. Drag with the mouse to turn.'],
-  ['Look closer', TOUCH ? 'Tap a frame<br>or press Look' : 'Walk up to a frame<br>press <kbd>E</kbd>', 'Stand in front of a work and your character will look, think and react. Press E to open it, or sit on a bench in front of it. Press Q to dance when the music is on.'],
-  ['Edit and listen', 'Tap <kbd>Edit</kbd> any time<br>outfit · colours · mood', 'Change {name}\u2019s outfit, colours or mood whenever you like. Press play on the music card: the west wall plays Kendrick Lamar, the centre Drake and the entrance Travis Scott.'],
+  ['Look closer', TOUCH ? 'Tap a frame<br>or press Look' : 'Walk up to a frame<br>press <kbd>E</kbd>', 'Stand in front of a work and your character will look, think and react. Press E to open it. The benches and chairs are design pieces by architects: walk up to one to read about it, and press E to sit. Press Q to dance.'],
+  ['Edit and listen', 'Tap <kbd>Edit</kbd> any time<br>outfit · colours · mood', 'Change {name}\u2019s outfit, colours or mood whenever you like. Music starts on its own through Spotify and changes artist as you walk through the hall. Turn it off with the Sound button.'],
 ];
 let tutI = 0;
 function openTut(i) {
@@ -1394,6 +1663,43 @@ function setPrompt(w, btn) {   // writing to the DOM every frame forces style re
   if (!w) { promptEl.classList.remove('on'); actEl.disabled = true; return; }
   promptEl.innerHTML = TOUCH ? esc(w) : `<kbd>E</kbd>${esc(w)}`; promptEl.classList.add('on'); actEl.disabled = false; actEl.textContent = btn;
 }
+let fcardFor = null;
+function furnCard(f) {
+  if (openModal || mode !== 'play') f = null;
+  if (f === fcardFor) return; fcardFor = f;
+  const c = $('#fcard'); c.hidden = !f; if (!f) return;
+  $('#fName').textContent = f.d.name; $('#fBy').textContent = `${f.d.by}, ${f.d.year} · ${f.d.maker}`;
+}
+$('#fMore').onclick = () => fcardFor && openFurn(fcardFor);
+const furnShots = {};
+function furnShot(f) {   // render the piece on its own, once, for the sheet
+  if (furnShots[f.key]) return furnShots[f.key];
+  const S = 512, rt = new THREE.WebGLRenderTarget(S, S, { samples: 4 }), sc = new THREE.Scene(); sc.background = new THREE.Color(0xF4F4F2);
+  sc.add(new THREE.HemisphereLight(0xffffff, 0xd8d4cc, 1.6), new THREE.AmbientLight(0xffffff, .5)); const dl = new THREE.DirectionalLight(0xffffff, .9); dl.position.set(2, 4, 3); sc.add(dl);
+  const g = new THREE.Group(); f.d.build(g); sc.add(g);
+  rt.texture.colorSpace = THREE.SRGBColorSpace;
+  const box = new THREE.Box3().setFromObject(g);
+  const sph = box.getBoundingSphere(new THREE.Sphere()), cam = new THREE.PerspectiveCamera(28, 1, .01, 30), dist = sph.radius / Math.sin(THREE.MathUtils.degToRad(14)) * 1.05;
+  cam.position.copy(sph.center).add(new THREE.Vector3(1.05, .62, 1.25).normalize().multiplyScalar(dist)); cam.lookAt(sph.center);
+  const pr = renderer.getPixelRatio(); renderer.setPixelRatio(1); renderer.setRenderTarget(rt); renderer.render(sc, cam);
+  const px = new Uint8Array(S * S * 4); renderer.readRenderTargetPixels(rt, 0, 0, S, S, px); renderer.setRenderTarget(null); renderer.setPixelRatio(pr); rt.dispose();
+  const cv = document.createElement('canvas'); cv.width = cv.height = S; const g2 = cv.getContext('2d'), img = g2.createImageData(S, S);
+  for (let y = 0; y < S; y++) img.data.set(px.subarray((S - 1 - y) * S * 4, (S - y) * S * 4), y * S * 4);   // WebGL rows run bottom-up
+  g2.putImageData(img, 0, 0);
+  return (furnShots[f.key] = cv.toDataURL('image/jpeg', .9));
+}
+let furnOpen = null;
+function openFurn(f) {
+  furnOpen = f; const d = f.d;
+  $('#fImg').src = furnShot(f); $('#fImg').alt = `${d.name}, a simplified 3D study`;
+  $('#fTitle').textContent = d.name; $('#fDesigner').textContent = d.by;
+  $('#fFacts').innerHTML = [['Year', d.year], ['Maker', d.maker], ['Materials', d.mat]].map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
+  $('#fNote').textContent = d.note;
+  $('#fKick').textContent = d.exhibit ? 'On show in the gallery' : f.art ? `Bench for ${WORKS[f.art.i].t}` : 'Furniture in the gallery';
+  if (openModal && openModal !== 'profile') $('#' + openModal).classList.remove('open');
+  showModal('furn'); chime(660, .3, .04);
+}
+$('#fSit').onclick = () => { const f = furnOpen; closeModal(); if (f && mode === 'play') { if (brain.sit) standUp(); sitDown(f); } };
 function nearestBench(maxD = 1.6) { let b = null, bd = maxD; for (const q of BENCHES) { const d = Math.hypot(q.x - ST.x, q.z - ST.z); if (d < bd) { bd = d; b = q; } } return b; }
 function sitDown(b) {
   const B = brain; B.sit = b; B.sitT = 0; B.sitLong = false; B.state = 'sit'; B.forceDance = false;
@@ -1401,7 +1707,8 @@ function sitDown(b) {
 }
 function standUp() {
   const B = brain, b = B.sit; if (!b) return; B.sit = null; B.state = 'free'; B.still = 0;
-  ST.x = b.x - Math.sin(b.h) * .7; ST.z = b.z - Math.cos(b.h) * .7; collide();
+  const off = b.d.exhibit ? .75 : .7 + b.d.d / 2;
+  ST.x = b.x + Math.sin(b.h) * off; ST.z = b.z + Math.cos(b.h) * off; collide();
 }
 
 /* ================= update loop ================= */
@@ -1441,7 +1748,6 @@ function update(dt, t) {
   if (moving && ST.grounded && Math.sign(Math.cos(ST.phase)) !== Math.sign(prevC)) {   // heel strike: a foot reaches the front
     stepSound({ angry: .2, sleepy: .04, sad: .05 }[mood] ?? .09);
     if (mood === 'angry') { ST.shake = .12; emit('puff', ST.x, .1, ST.z, rand(-.4, .4), .3, rand(-.4, .4), .7, .45); }
-    if (mood === 'mischievous') { footprint(ST.x, ST.z, ST.h, printSide); printSide *= -1; }
     if (mood === 'happy' && Math.random() < .5) chime(rand(880, 1320), .12, .015);
   }
   // pose
@@ -1503,12 +1809,15 @@ function update(dt, t) {
     }
     B.nextLine -= dt; if (B.nextLine <= 0) { sayAbout(B.art.i); B.nextLine = rand(6, 9); }
   } else if (B.state === 'sit') {
-    B.sitT += dt; crouch += .13;
+    B.sitT += dt; crouch += .13 + (.44 - B.sit.seatY);
     legs.forEach(l => { l.rotation.x = -1.05; l.userData.knee.rotation.x = 1.05; }); arms.forEach(a => { a.rotation.x = -.72; a.rotation.z = 0; });
-    const A = B.sit.art; tmp.set(A.pos.x - ST.x, 0, A.pos.z - ST.z); const rel = Math.atan2(tmp.x, tmp.z) - ST.h;
-    hy = clamp(Math.atan2(Math.sin(rel), Math.cos(rel)), -1, 1) + Math.sin(t * .35) * .12; headX = -.16 + Math.sin(t * .5) * .03; lean = .06; sway = 0;
-    if (B.sitT > 3 && !B.seen.has(A.i)) { B.seen.add(A.i); B.views[A.i] = 1; }
-    if (B.sitT > 4 && (B.lineIdx[A.i] || 0) === 0) sayAbout(A.i);
+    const A = B.sit.art;
+    if (A) {
+      tmp.set(A.pos.x - ST.x, 0, A.pos.z - ST.z); const rel = Math.atan2(tmp.x, tmp.z) - ST.h;
+      hy = clamp(Math.atan2(Math.sin(rel), Math.cos(rel)), -1, 1) + Math.sin(t * .35) * .12; headX = -.16 + Math.sin(t * .5) * .03; lean = .06; sway = 0;
+      if (B.sitT > 3 && !B.seen.has(A.i)) { B.seen.add(A.i); B.views[A.i] = 1; }
+      if (B.sitT > 4 && (B.lineIdx[A.i] || 0) === 0) sayAbout(A.i);
+    } else { hy = Math.sin(t * .3) * .5; headX = -.05 + Math.sin(t * .5) * .03; lean = -.08; sway = 0; }
     if (B.sitT > 22 && !B.sitLong) { B.sitLong = true; think(SAY.sitLong, 4); }
     if (musicOn) { headX += Math.max(0, Math.sin(t * TAU * (music.zone.bpm / 60))) * .06; }
   } else if (B.state === 'dance') {
@@ -1608,8 +1917,9 @@ function update(dt, t) {
   // nearest interactive thing
   near = mode === 'play' ? (nearestSpot(4.8, .5, 'art') || nearestSpot(2.7, .25)) : null;
   const pr = promptEl, ab = actEl, nb = mode === 'play' && !brain.sit ? nearestBench() : null;
-  if ((brain.sit || (nb && !near)) && !openModal) {
-    const w = brain.sit ? 'Stand up' : 'Sit on the bench';
+  furnCard(brain.sit || nearestBench(2.6));
+  if ((brain.sit || (nb && (!near || nearSeat(nb)))) && !openModal) {
+    const w = brain.sit ? 'Stand up' : `Sit on the ${nb.d.name.replace(/ \(.*\)$/, '')}`;
     setPrompt(w, brain.sit ? 'Stand' : 'Sit');
     glow.material.opacity = lerp(glow.material.opacity, 0, 1 - Math.exp(-dt * 6));
   } else if (near && !openModal) {
@@ -1790,6 +2100,7 @@ function enterGallery() {
   if (!document.body.classList.contains('on-profile')) return;
   document.body.classList.remove('on-profile'); document.body.dataset.page = 'gallery'; openModal = null; setCurrent('gallery');
   goStep(played ? 2 : 1); showModal('build'); camSnap = true; audioInit(); prewarm();
+  if (!music.zone && soundOn && music.svc === 'spotify') { music.zone = zoneAt(ST.x, ST.z); setZoneLabel(music.zone); buildEmbed(); }
   try { history.replaceState(null, '', '#gallery'); } catch {}
 }
 document.addEventListener('click', e => {
@@ -1823,7 +2134,7 @@ else if (location.hash.startsWith('#work-')) { const k = WORKS.findIndex(w => '#
   });
 }
 setSound(soundOn);
-window.__gallery = { MERGE, renderer, scene, hero, legs, camera, brain, BENCHES, sitDown, standUp, ST, setMood, look, applyLook, music, get near() { return near; } };
+window.__gallery = { FURN, openFurn, spots, MERGE, renderer, scene, hero, legs, camera, brain, BENCHES, sitDown, standUp, ST, setMood, look, applyLook, music, get near() { return near; } };
 </script>
 </body>
 </html>
