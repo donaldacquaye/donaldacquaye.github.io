@@ -1000,30 +1000,34 @@ $('#soundBtn').onclick = () => { audioInit(); setSound(!soundOn); };
 // Signed-in Spotify users hear full tracks in the browser; everyone else gets Spotify's previews.
 // Music zones: the hall (x -20..20, z -12..12) is split into a 5 x 3 grid of 8 m squares, one artist each.
 // spotify / apple: [type, id]. null means that service has no embeddable page for it, so the player shows a link instead.
-const ZCOLS = [-20, -12, -4, 4, 12, 20], ZROWS = [-12, -4, 4, 12];
+// Music zones: the hall (x -20..20, z -12..12) is split into a 4 x 4 grid of 10 x 6 m areas, one artist each.
+// spotify / apple: [type, id]. null means that service has no embeddable page for it, so the player shows a link instead.
+const ZCOLS = [-20, -10, 0, 10, 20], ZROWS = [-12, -6, 0, 6, 12];
 const ZONES = [
-  // north row (z -12..-4), west -> east. The entrance (x 15, z -9.6) is in Kendrick's square.
+  // north row (z -12..-6), west -> east. The entrance (x 15, z -9.6) is in Kendrick's square.
   { id: 'future',   artist: 'Future',              style: 'bounce',   bpm: 74,  spotify: ['artist', '1RyvyyTE3xzB2ZywiAwp0i'], apple: ['playlist', 'future-essentials/pl.42614a08c7664674a73918d7941f36b7'] },
   { id: 'drake',    artist: 'Drake',               style: 'sway',     bpm: 100, spotify: ['artist', '3TVXtAsR1Inumwj472S9r4'], apple: ['playlist', 'drake-essentials/pl.b8afd0ec852542f785a5f7a4a9a80d6a'] },
-  { id: 'travis',   artist: 'Travis Scott',        style: 'bounce',   bpm: 76,  spotify: ['artist', '0Y5tJX1MQlPlqiwlOH1tJY'], apple: ['playlist', 'travis-scott-essentials/pl.5d6c20e77be541439bc4beb5435f1015'] },
   { id: 'keem',     artist: 'Baby Keem — Ca$ino',  style: 'bounce',   bpm: 80,  spotify: ['album', '21xGzx6HTydCnvfZTvLf6b'],  apple: ['album', '1889659166'] },
   { id: 'kendrick', artist: 'Kendrick Lamar',      style: 'two-step', bpm: 92,  spotify: ['artist', '2YZyLoL8N0Wb9xBt1NhZWg'], apple: ['playlist', 'kendrick-lamar-essentials/pl.8155ebe08de7423ca2b29929c8adeebd'] },
-  // middle row (z -4..4)
-  { id: 'rema',     artist: 'Rema',                style: 'two-step', bpm: 104, spotify: ['artist', '46pWGuE3dSwY3bMMXGBvVS'], apple: ['playlist', 'rema-essentials/pl.7998f1ab71074b9e915af152c3fba63f'] },
+  // second row (z -6..0)
   { id: 'skepta',   artist: 'Skepta',              style: 'bounce',   bpm: 70,  spotify: ['artist', '2p1fiYHYiXz9qi0JJyxBzN'], apple: ['playlist', 'skepta-essentials/pl.6e3fdc4abc9a4b9f930a3eefa99b6379'] },
   { id: 'dave',     artist: 'Dave',                style: 'two-step', bpm: 96,  spotify: ['artist', '6Ip8FS7vWT1uKkJSweANQK'], apple: ['playlist', 'dave-essentials/pl.31714455229f4117bc21a57c50324090'] },
-  { id: 'omar',     artist: 'Omar Sterling — Victory Through Harmony', style: 'two-step', bpm: 94, spotify: ['album', '6GY82oyxnJEqG74frlROrx'], apple: null, q: 'Omar Sterling Victory Through Harmony' },
+  { id: 'travis',   artist: 'Travis Scott',        style: 'bounce',   bpm: 76,  spotify: ['artist', '0Y5tJX1MQlPlqiwlOH1tJY'], apple: ['playlist', 'travis-scott-essentials/pl.5d6c20e77be541439bc4beb5435f1015'] },
   { id: 'kwesi',    artist: 'Kwesi Arthur',        style: 'sway',     bpm: 96,  spotify: ['artist', '52iM1kP5BpnLypZ0VtrpyY'], apple: ['playlist', 'kwesi-arthur-essentials/pl.b4d6475db7984f28a1a6099ff4633db9'] },
-  // south row (z 4..12)
+  // third row (z 0..6)
+  { id: 'rema',     artist: 'Rema',                style: 'two-step', bpm: 104, spotify: ['artist', '46pWGuE3dSwY3bMMXGBvVS'], apple: ['playlist', 'rema-essentials/pl.7998f1ab71074b9e915af152c3fba63f'] },
+  { id: 'asake',    artist: 'Asake',               style: 'two-step', bpm: 112, spotify: ['artist', '3a1tBryiczPAZpgoZN9Rzg'], apple: ['playlist', 'asake-essentials/pl.baffaf948ee2465f8d13bdd64f242f2f'] },
+  { id: 'omar',     artist: 'Omar Sterling — Victory Through Harmony', style: 'two-step', bpm: 94, spotify: ['album', '6GY82oyxnJEqG74frlROrx'], apple: null, q: 'Omar Sterling Victory Through Harmony' },
+  { id: 'mfana',    artist: 'MfanaTouchLine',      style: 'two-step', bpm: 113, spotify: ['artist', '2RV0TompTWunZpF57DdQzJ'], apple: null, q: 'MfanaTouchLine' },
+  // south row (z 6..12)
   { id: 'gunn',     artist: 'Westside Gunn',       style: 'sway',     bpm: 88,  spotify: ['artist', '0ABk515kENDyATUdpCKVfW'], apple: null, q: 'Westside Gunn' },
   { id: 'mavo',     artist: 'Mavo',                style: 'two-step', bpm: 108, spotify: ['artist', '1VBjib1ykqXxss9Tw5YuR9'], apple: null, q: 'Mavo' },
-  { id: 'asake',    artist: 'Asake',               style: 'two-step', bpm: 112, spotify: ['artist', '3a1tBryiczPAZpgoZN9Rzg'], apple: ['playlist', 'asake-essentials/pl.baffaf948ee2465f8d13bdd64f242f2f'] },
   { id: 'tems',     artist: 'Tems',                style: 'sway',     bpm: 90,  spotify: ['artist', '687cZJR45JO7jhk1LHIbgq'], apple: ['playlist', 'tems-essentials/pl.545878529ee74bba89feceeb232b6189'] },
   { id: 'santi',    artist: 'Santigold — Disparate Youth', style: 'bounce', bpm: 116, spotify: ['track', '7d23MhPFE9eB3U8DPRirnL'], apple: ['album', '498845706'] },
 ];
-ZONES.forEach((z, i) => { const c = i % 5, r = Math.floor(i / 5); z.x0 = ZCOLS[c]; z.x1 = ZCOLS[c + 1]; z.z0 = ZROWS[r]; z.z1 = ZROWS[r + 1]; });
+ZONES.forEach((z, i) => { const c = i % 4, r = Math.floor(i / 4); z.x0 = ZCOLS[c]; z.x1 = ZCOLS[c + 1]; z.z0 = ZROWS[r]; z.z1 = ZROWS[r + 1]; });
 const inZone = (z, x, y, m = 0) => x >= z.x0 + m && x <= z.x1 - m && y >= z.z0 + m && y <= z.z1 - m;
-const zoneAt = (x, y) => ZONES.find(z => inZone(z, x, y)) || ZONES[4];
+const zoneAt = (x, y) => ZONES.find(z => inZone(z, x, y)) || ZONES[3];
 const music = { zone: null, svc: store.get('svc', 'spotify') === 'apple' ? 'apple' : 'spotify', ctl: null, api: null, paused: true, wanted: false };
 function musicStart() {}
 function musicLevel() {}
