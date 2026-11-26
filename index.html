@@ -235,6 +235,7 @@ body.touch .tbtns{display:flex;flex-direction:column;gap:12px;position:absolute;
 .check input{width:18px;height:18px;accent-color:var(--ink)}
 
 /* artwork detail */
+.ppill.tap{background:#1e1b2b;color:#fff}.ppill.tap i,.ppill.tap b{color:#fff}
 .fcard{position:absolute;left:20px;top:64px;max-width:min(340px,calc(100vw - 40px));padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.94);box-shadow:0 0 0 1px var(--ink-15),0 8px 24px rgba(0,0,0,.08);display:grid;gap:3px;font:12px/1.45 var(--mono);color:#111;pointer-events:auto}
 .fcard .fk{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#777}
 .fcard b{font-size:13.5px}
@@ -1288,12 +1289,30 @@ const zoneAt = (x, y) => ZONES.find(z => inZone(z, x, y)) || ZONES[3];
 // Autoplay: the gallery starts Spotify itself once the visitor clicks "Enter the gallery" (browsers only allow sound after a click).
 // music.auto = the visitor wants music; pausing in the player or turning sound off clears it, and it carries across zones.
 const music = { zone: null, svc: store.get('svc', 'spotify') === 'apple' ? 'apple' : 'spotify', ctl: null, api: null, paused: true, wanted: false, auto: soundOn, loadT: 0 };
-function musicPlay() { if (!music.ctl || !soundOn || !music.auto) return; music.loadT = performance.now(); try { music.ctl.play(); } catch {} }
+function musicPlay() { if (!music.ctl || !soundOn || !music.auto) return; music.playT = performance.now(); try { music.ctl.play(); } catch {} }
+// Phones only let a page start sound from inside a tap. So after each artist change the gallery also retries on the visitor's
+// next touch (lifting a finger off the walking stick counts), and the music pill says "Tap to play" if it is still silent.
+const shouldPlay = () => mode === 'play' && soundOn && music.auto && music.svc === 'spotify' && music.ctl && music.paused && !openModal;
+['touchend', 'pointerup', 'click', 'keydown'].forEach(ev => addEventListener(ev, () => { if (shouldPlay() && performance.now() - (music.playT || 0) > 600) musicPlay(); }, { capture: true, passive: true }));
+function musicHint() {   // called every frame from zoneCheck
+  const stuck = shouldPlay() && performance.now() - music.loadT > 2500, t = $('#pChev');
+  if (stuck !== music.hint) {
+    music.hint = stuck; const P = $('#player');
+    // iPhone (every iOS browser is Safari underneath) only lets Spotify start from a tap inside Spotify's own player,
+    // so there the player opens by itself with its play button showing, and closes again once the music is going
+    if (IOS && stuck && !P.classList.contains('open')) { setPlayerOpen(true); music.autoOpened = true; }
+    if (IOS && !stuck && music.autoOpened) { music.autoOpened = false; setTimeout(() => { if (!music.paused) setPlayerOpen(false); }, 1500); }
+    t.textContent = stuck ? (IOS ? 'Tap ▶ to play' : 'Tap to play') : (P.classList.contains('open') ? 'Hide' : 'Open player');
+    $('#pPill').classList.toggle('tap', stuck);
+  }
+}
+const IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+function setPlayerOpen(o) { $('#player').classList.toggle('open', o); $('#pPill').setAttribute('aria-expanded', o); if (!music.hint) $('#pChev').textContent = o ? 'Hide' : 'Open player'; if (o && music.dirty && music.zone) buildEmbed(); }
 function musicStart() {}
 function musicLevel() {}
 function playerVisible() { const p = $('#player'); if (p) p.hidden = !(soundOn && mode === 'play' && !document.body.classList.contains('on-profile')); }
 function setZoneLabel(z) { $('#pZone').textContent = z.artist; }
-$('#pPill').addEventListener('click', () => { const o = $('#player').classList.toggle('open'); if (o && music.dirty && music.zone) buildEmbed(); $('#pPill').setAttribute('aria-expanded', o); $('#pChev').textContent = o ? 'Hide' : 'Open player'; });
+$('#pPill').addEventListener('click', () => { if (music.hint) { if (IOS) setPlayerOpen(true); else musicPlay(); return; } const o = $('#player').classList.toggle('open'); if (o && music.dirty && music.zone) buildEmbed(); $('#pPill').setAttribute('aria-expanded', o); $('#pChev').textContent = o ? 'Hide' : 'Open player'; });
 // Spotify: the iFrame API lets the player keep playing when the zone changes. If it is not available, a plain embed is used.
 window.onSpotifyIframeApiReady = api => { music.api = api; if (music.svc === 'spotify' && music.zone && !music.ctl && musicInUse()) buildEmbed(); };
 function iframe(src, h) {
@@ -1311,7 +1330,7 @@ function linkOut(svc, z) {
 }
 const musicInUse = () => $('#player').classList.contains('open') || music.wanted || music.touched || !!music.ctl || (music.svc === 'spotify' && music.auto && soundOn);
 function buildEmbed() {
-  music.dirty = false;
+  music.dirty = false; music.loadT = performance.now();
   const box = $('#pEmbed'), z = music.zone; music.ctl = null; music.paused = true; music.touched = false;
   const src = z[music.svc];
   if (!src) { box.replaceChildren(linkOut(music.svc, z)); return; }
@@ -1328,7 +1347,7 @@ function buildEmbed() {
       ctl.addListener('playback_update', e => {
         const was = music.paused; music.paused = e.data.isPaused;
         if (!e.data.isPaused) { music.wanted = true; music.auto = true; }
-        else if (!was && performance.now() - music.loadT > 2500 && soundOn) music.auto = false;   // the visitor paused it: stop autoplaying
+        else if (!was && soundOn && $('#player').classList.contains('open') && performance.now() - music.loadT > 4000 && performance.now() - (music.playT || 0) > 1500) music.auto = false;   // the visitor pressed pause: stop autoplaying
       });
       if (mode === 'play') musicPlay();
     });
@@ -1339,7 +1358,8 @@ function switchZone(z) {
   if (!musicInUse()) { music.dirty = true; return; }   // build it when the player is opened
   if (music.svc === 'spotify' && music.ctl && z.spotify) {
     music.loadT = performance.now();
-    music.ctl.loadUri(`spotify:${z.spotify[0]}:${z.spotify[1]}`); setTimeout(musicPlay, 900);
+    music.ctl.loadUri(`spotify:${z.spotify[0]}:${z.spotify[1]}`);
+    [900, 2200, 4000].forEach(ms => setTimeout(() => { if (shouldPlay()) musicPlay(); }, ms));
   } else buildEmbed();
 }
 function musicPause() {
@@ -1358,7 +1378,7 @@ function zoneCheck() {
   // switch only once the character is 0.8 m inside a new square, so walking along a boundary doesn't flick the music
   if (!music.zone) { const z = zoneAt(ST.x, ST.z); music.zone = z; setZoneLabel(z); if (musicInUse()) buildEmbed(); else music.dirty = true; }
   else if (!inZone(music.zone, ST.x, ST.z, -0.8)) { const z = zoneAt(ST.x, ST.z); if (z !== music.zone && inZone(z, ST.x, ST.z, .8)) switchZone(z); }
-  playerVisible();
+  playerVisible(); musicHint();
 }
 
 /* ================= state & input ================= */
